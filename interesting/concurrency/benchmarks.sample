@@ -1,0 +1,8 @@
+goos: darwin
+goarch: amd64
+pkg: github.com/tjgurwara99/goteach/interesting/concurrency
+cpu: Intel(R) Core(TM) i7-7700HQ CPU @ 2.80GHz
+BenchmarkCummulativeSum-8             	213827577	         5.652 ns/op
+BenchmarkCummulativeSumConcurrent-8   	  429966	      2503 ns/op
+PASS
+ok  	github.com/tjgurwara99/goteach/interesting/concurrency	3.502s

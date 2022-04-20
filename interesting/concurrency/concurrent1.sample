@@ -1,0 +1,10 @@
+func cummulativeSumConcurrent(ints ...int64) int64 {
+	var v int64
+	length := len(ints)
+	lastGoroutine := GOROUTINES - 1
+	perGoroutine := length / GOROUTINES
+	var wg sync.WaitGroup
+	wg.Add(GOROUTINES)
+
+    ...
+}

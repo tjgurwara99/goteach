@@ -1,0 +1,146 @@
+Why Go?
+
+* Introduction
+
+If you've known me, then you know that I'm self described advocate for Go 🤩
+
+* Let me claim a few interesting things that may or may not make you a Go convert
+
+- Its boring
+- Concurrency
+- Compiled + static
+- Built for large teams
+- Simple to pick up
+- Cheap[0]
+
+[0]: will explain in an example later.
+
+* Simplicity
+
+Anyone know how many keywords there are in Python?
+In total there are 33 keywords in Python
+
+In contrast, Go has only 25 keywords. Why am I mentioning this?
+
+- Built for large teams
+- Simple to pick up
+
+* Zen of Python
+
+.code zen_of_python.sample
+
+* Food for thought?
+
+
+Is Python actually following this?
+
+How many different libraries exist in our code bases that
+essentially do the same thing?
+
+Serializers come to mind - Pydantic, Marshallow,
+Marshmallow-dataclasses, json.loads/dumps, RestFrameworkSerializers
+etc etc. How does this connect with Go? Well, it connects quite
+nicely with the zen of python.
+ 
+ There should be one-- and preferably only one --obvious way to do it.
+
+
+*DISCLAIMER:* I'm *not* *against* dependencies \😆
+
+*Not* to say this can't happen in Go but its very difficult
+because of the way the language is designed - no inheritance only interfaces (Protocols).
+
+* Static and Compiled
+
+Everyone's been there:
+
+- We make a program, runs well in our machine;
+- We deploy it, but... a dependency is missing;
+- We add dependency, but... the dependency resolver had issues and versions do not match;
+- etc.
+
+In Go, if you use a Macbook and want to deploy it to linux
+with a completely different processor, all you need to do is
+
+.code goarch.sh
+
+which will create a binary executable for linux with arm processor.
+
+* Go toolchain
+
+We all remember the discussion about standards when using Python in `#python-chat`.
+
+Go comes with all the tools that we might need - formatting, testing, benchmarking, documenting, linting, vetting, gopls (language server),
+mod, vendor, build, profiling (pprof and trace), race detectors - just to name a few.
+
+Python also has these tools, in fact we're using them but they
+are not built into the language but rather external packages which
+end up becoming development dependency and rarely enforced properly[1].
+Nothing wrong with this but is it really something that we should have to
+deal with on a regular basis? Isn't software engineering a creative job,
+however ends up becoming a maintainace one[2].
+
+[1]: The Go compiler is not as forgiving as Python's interpreters are.
+[2]: My hot take - don't fire me 😅
+
+* Demo a lambda
+
+Demo...
+
+- Cheap? Maybe - personally of the opinion that it is.
+
+- further profiling of flask vs golang servers -- what do you think?
+
+* Interesting demos for things I really like
+
+
+* Concurrency patterns
+
+Lets look at an interesting example.
+
+.code concurrency/cummulative.go
+
+* The concurrency version of this...
+
+.code concurrency/concurrent1.sample
+
+* and
+
+.code concurrency/concurrent2.sample
+
+* We ran our benchmarks
+
+* Lets look at the results... 😅
+
+.code concurrency/benchmarks.sample
+
+Well, we tried to improve our function and it
+was a good shout to check whether it could be
+improved with concurrency. It didn't result in
+any improvement but... it was easy enough to
+prove that the simple version is much faster.
+
+Try doing this exact exercise in Python, it wouldn't be as
+straight forward (at least for me.)
+
+* Json Marshalling and Unmarshalling
+
+`entity` package
+
+Interfaces
+
+.code entity/marshal.sample
+
+and
+
+.code entity/unmarshal.sample
+
+* Example of how this works
+
+Demo
+
+* Concurrency patterns Continued
+
+Demo - request context one at least.
+
+(Don't think we will have a lot of time for others)

@@ -1,0 +1,22 @@
+    ...
+	for g := 0; g < GOROUTINES; g++ {
+		go func(g int) {
+			start := g * perGoroutine
+			end := start + perGoroutine
+
+			if g == lastGoroutine {
+				end = length
+			}
+
+			var lv int64
+			for _, n := range ints[start:end] {
+				lv += n
+			}
+			atomic.AddInt64(&v, int64(lv))
+			wg.Done()
+		}(g)
+	}
+
+	wg.Wait()
+	return v
+}
